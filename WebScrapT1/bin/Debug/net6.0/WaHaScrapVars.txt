@@ -1,0 +1,5 @@
+//line with variable should end just after variable
+//remember to change double quotes " " into single quotes ' ' in selector
+//you can set desired selector via developer tools (f12)in browser-> copy->copy Xpath
+baseUrl=https://wahapedia.ru/wh40k9ed/factions/aeldari/biel-tan#Stratagems
+selectorXpath=//*[@id='wrapper']/div[34]/div
