@@ -1,4 +1,5 @@
 ﻿using HtmlAgilityPack;
+using System.Text.RegularExpressions;
 
 namespace WebScrapT1
 {
@@ -32,7 +33,11 @@ namespace WebScrapT1
                 }
                 if (words[i].ToUpper() == words[i] && words[i] != "")
                 {
-                    Keywords.Add(words[i]);
+                    Regex reg = new Regex(@"\w*[A-Z]\w*[A-Z]\w*");
+                    if (reg.IsMatch(words[i]))
+                    {
+                        Keywords.Add(words[i]);
+                    }
                 }
             }
             if (needPhase)
