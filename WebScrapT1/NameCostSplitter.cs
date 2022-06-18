@@ -13,7 +13,7 @@ namespace WebScrapT1
             if (firstDigit != default(char))
             {
                 Name = input.Substring(0, input.IndexOf(firstDigit));
-                Cost = input.Substring(input.IndexOf(firstDigit));
+                Cost = input.Substring(input.IndexOf(firstDigit)).Replace("CP", "");
             }
             else
             {

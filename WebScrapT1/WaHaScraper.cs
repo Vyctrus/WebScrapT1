@@ -1,4 +1,5 @@
 ﻿using HtmlAgilityPack;
+using System.Text.Json;
 
 namespace WebScrapT1
 {
@@ -6,7 +7,7 @@ namespace WebScrapT1
     {
         private string baseUrl = "nope";//"https://wahapedia.ru/wh40k9ed/factions/aeldari/biel-tan#Stratagems";
         private string selector = "nope";//"//*[@id='wrapper']/div[34]/div";
-
+        private bool testingPhase = false;
         public void GetStarategies()
         {
             if (!ReadFile())
@@ -37,16 +38,27 @@ namespace WebScrapT1
                 Console.WriteLine("Invalid selector");
                 return;
             }
-
-            var level1Element = tableStrategems.ChildNodes.First();
+            //serialize table
+            List<WordSplitter> splitters = new List<WordSplitter>();
             foreach (var tableRecord in tableStrategems.ChildNodes)
             {
                 WordSplitter ws = new WordSplitter(tableRecord);
-                ws.Print();
-                Console.WriteLine("");
+                splitters.Add(ws);
+                if (testingPhase) { ws.Print(); };
             }
-
+            SaveDataToJson(splitters);
         }
+
+        private bool SaveDataToJson(List<WordSplitter> splitters)
+        {
+            var options = new JsonSerializerOptions { WriteIndented = true };
+            var jsonString = System.Text.Json.JsonSerializer.Serialize(splitters, options);
+            string fileName = "data_output.json";
+            File.WriteAllText(fileName, jsonString);
+            Console.WriteLine("Work done! Shuld be fine... End?");
+            return true;
+        }
+
 
         public bool ReadFile()
         {

@@ -4,14 +4,14 @@ namespace WebScrapT1
 {
     internal class WordSplitter
     {
-        string Name { get; }
-        string Cost { get; }
-        string Faction { get; }
-        string Category { get; }
-        string Whose { get; }
-        string Phase { get; }
-        string Text { get; }
-        List<string> Keywords { get; }
+        public string Name { get; }
+        public string Cost { get; }
+        public string Faction { get; }
+        public string Category { get; }
+        public string Whose { get; }
+        public string Phase { get; }
+        public string Text { get; }
+        public List<string> Keywords { get; }
 
         public WordSplitter(HtmlNode level1Element)
         {
@@ -51,7 +51,7 @@ namespace WebScrapT1
                 Console.Write(word + $" {i} ");
                 i++;
             }
-            Console.WriteLine("");
+            Console.WriteLine("\n");
         }
     }
 }
